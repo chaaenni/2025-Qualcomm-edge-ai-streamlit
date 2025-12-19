@@ -46,6 +46,50 @@ def retrieve(category, input_data, task):
     print(context)
     
     return context
+
+# Streaming version of process_output
+def process_output_streaming(category, input_data, task, chunk_size=10, delay=0.01, timeout_seconds=60, context_limit=5):
+    """
+    Streaming version of process_output that yields chunks of the response.
+    
+    Args:
+        category: Category for retrieval
+        input_data: User input text
+        task: Task type ("QA", "GuideLine", "caseSearch")
+        chunk_size: Number of characters per chunk (default: 10)
+        delay: Delay between chunks in seconds (default: 0.01)
+        timeout_seconds: Timeout for the operation (default: 60)
+        context_limit: Limit for context documents (default: 5)
+    
+    Yields:
+        str: Chunks of the response text
+    """
+    import time
+    
+    global pdf_databases
+    print(pdf_databases)
+
+    # Retrieve relevant information from the given category
+    retriever = pdf_databases[category]
+    context = retriever.invoke(input_data)
+    print(context)
+    
+    # Limit context if needed (assuming context_limit applies to number of documents/chunks)
+    # Note: This is a simplified implementation. You may need to adjust based on your retriever's structure
+    if context_limit and isinstance(context, list):
+        context = context[:context_limit]
+    
+    # Pass context and input to the QA model and get full response
+    # Note: get_LLM_output doesn't support streaming natively, so we simulate it
+    response = get_LLM_output(task, context, input_data)
+    
+    # Simulate streaming by yielding chunks
+    # In a real implementation, you would want to modify get_LLM_output to support streaming
+    for i in range(0, len(response), chunk_size):
+        chunk = response[i:i + chunk_size]
+        if chunk:
+            yield chunk
+            time.sleep(delay)
     
 
 
