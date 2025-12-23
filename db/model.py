@@ -103,7 +103,7 @@ def get_LLM_output(task, context, user_input):
     #     )
     # prompt_len = inputs["input_ids"].shape[-1]
     # out_text = tokenizer.decode(gen_ids[0][prompt_len:], skip_special_tokens=True).strip()
-    # if task == "GUIDELINE":
+    # if task == "GuideLine":
     #     out_text = out_text.split("\n")[:-1]
     #     out_text = "\n".join(out_text).strip()
     
