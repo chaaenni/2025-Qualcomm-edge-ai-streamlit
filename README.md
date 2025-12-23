@@ -135,7 +135,7 @@ python -m qai_hub_models.models.llama_v3_2_3b_instruct.export --chipset qualcomm
 Collect additional required files by following the steps below:
 
 <details>
-  <summary>Prepare Genie configs</summary>
+  <summary>Prepare Genie configs(You can skip this stage if you are using the latest version of QAIRT)</summary>
 
   - Download `tokenizer.json` from [official Hugging Face](https://huggingface.co/meta-llama/Llama-3.2-3B-Instruct/blob/main/tokenizer.json)
 
