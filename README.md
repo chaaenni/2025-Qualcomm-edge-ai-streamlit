@@ -102,6 +102,7 @@ qai-hub configure --api_token [API_TOKEN] #replace [API_TOKEN] by personal API t
 ```
 
 **4. Modify qai-hub model.py Code**
+
 Go to llama_v3_2_3b_instruct folder.
 
 ```bash
@@ -116,6 +117,7 @@ HF_REPO_URL = f"https://huggingface.co/{HF_REPO_NAME}"
 ```
 
 **5. Export Llama-v3.2-3B-Instruct into Genie Compatible QNN Binaries**
+
 Go to qarit/[your qairt ver]/bin folder. Then:
 
 ```bash
